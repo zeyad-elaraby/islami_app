@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/home/tabs/hadeth.dart';
+import 'package:islami_app/home/tabs/quran.dart';
+import 'package:islami_app/home/tabs/radio.dart';
+import 'package:islami_app/home/tabs/sebha.dart';
+import 'package:islami_app/home/tabs/settings.dart';
+import 'package:islami_app/my_theme_data.dart';
+import 'package:islami_app/provider/my_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../my_theme_data.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
@@ -15,56 +24,60 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/default_bg.png"),
+              image: AssetImage(provider.mode == ThemeMode.light
+                  ? "assets/images/default_bg.png"
+                  : "assets/images/main_dark_bg.png"),
               fit: BoxFit.fill)),
       child: Scaffold(
-          backgroundColor: Colors.transparent,
           appBar: AppBar(
             elevation: 0,
-            centerTitle: true,
-            backgroundColor: Colors.transparent,
             title: Text(
-              "إسلامي",
-              style: GoogleFonts.elMessiri(
-                  fontSize: 30, fontWeight: FontWeight.w700),
+              "Islami",
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          // body: tabs[selectedIndex],
+          body: tabs[selectedIndex],
           bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Color(0xFFB7935F),
               currentIndex: selectedIndex,
               onTap: (value) {
-                selectedIndex = value;
-                setState(() {});
+                setState(() {
+                  selectedIndex = value;
+                });
               },
-              type: BottomNavigationBarType.shifting,
-              selectedItemColor: Colors.black,
-              unselectedItemColor: Colors.white,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
               items: [
                 BottomNavigationBarItem(
-                    icon: ImageIcon(AssetImage("assets/images/icon_quran.png")),
-                    label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                  icon: ImageIcon(AssetImage("assets/images/icon_quran.png")),
+                  label: "",
+                ),
                 BottomNavigationBarItem(
-                    icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")),
-                    label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                  icon: ImageIcon(AssetImage("assets/images/icon_sebha.png")),
+                  label: "",
+                ),
                 BottomNavigationBarItem(
-                    icon: ImageIcon(AssetImage("assets/images/icon_radio.png")),
-                    label: "",
-                    backgroundColor: Color(0xFFB7935F)),
+                  icon: ImageIcon(AssetImage("assets/images/icon_radio.png")),
+                  label: "",
+                ),
                 BottomNavigationBarItem(
-                    icon:
-                        ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
-                    label: "",
-                    backgroundColor: Color(0xFFB7935F)),
-                BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
+                  icon: ImageIcon(AssetImage("assets/images/icon_hadeth.png")),
+                  label: "",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: "",
+                ),
               ])),
     );
   }
+
+  List<Widget> tabs = [
+    QuranTab(),
+    SebhaTab(),
+    RadioTab(),
+    HadethTab(),
+    SettingsTab()
+  ];
 }
