@@ -8,6 +8,9 @@ Color yellowColor = Color(0xFFFACC1D);
 Color lightMoodCardColor = Color(0xCBF8F8F8);
 Color darkMoodCardColor = Color(0xCC141A2E);
 Color darkModeSebhaZekrText = Color(0xFF0F1424);
+Color lightBottomSheetColor = Color(0xFFdddcdc);
+Color darkbBottomSheetColor = Color(0xFF141A2E);
+
 // Color
 
 class MyThemeData {
@@ -70,6 +73,9 @@ class MyThemeData {
       dividerTheme: DividerThemeData(
         color: primaryColor,
         thickness: 2,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: lightBottomSheetColor,
       ));
   static ThemeData darkTheme = ThemeData(
       primaryColor: primaryDarkColor,
@@ -138,5 +144,8 @@ class MyThemeData {
       dividerTheme: DividerThemeData(
         color: yellowColor,
         thickness: 2,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: darkbBottomSheetColor,
       ));
 }

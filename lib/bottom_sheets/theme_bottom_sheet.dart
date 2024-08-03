@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_app/provider/my_provider.dart';
 import 'package:provider/provider.dart';
@@ -20,22 +21,25 @@ class ThemeBottomSheet extends StatelessWidget {
             InkWell(
               onTap: () {
                 pro.changeTheme(ThemeMode.light);
+                Navigator.pop(context);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Light",
+                    "light".tr(),
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium
                         ?.copyWith(color: primaryColor),
                   ),
-                  Icon(
-                    Icons.done,
-                    size: 30,
-                    color: primaryColor,
-                  )
+                  pro.mode == ThemeMode.light
+                      ? Icon(
+                          Icons.done,
+                          size: 30,
+                          color: primaryColor,
+                        )
+                      : SizedBox(),
                 ],
               ),
             ),
@@ -45,14 +49,22 @@ class ThemeBottomSheet extends StatelessWidget {
             InkWell(
               onTap: () {
                 pro.changeTheme(ThemeMode.dark);
+                Navigator.pop(context);
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Dark",
+                    "dark".tr(),
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
+                  pro.mode == ThemeMode.dark
+                      ? Icon(
+                          Icons.done,
+                          size: 30,
+                          color: primaryColor,
+                        )
+                      : SizedBox(),
                   // Icon(Icons.done),
                 ],
               ),

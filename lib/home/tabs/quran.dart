@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami_app/my_theme_data.dart';
@@ -254,7 +255,7 @@ class QuranTab extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                "verses",
+                "verses".tr(),
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
@@ -264,7 +265,7 @@ class QuranTab extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                "Sura Names",
+                "sura_names".tr(),
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme

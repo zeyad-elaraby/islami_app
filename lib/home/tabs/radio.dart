@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami_app/provider/my_provider.dart';
@@ -23,7 +24,7 @@ class RadioTab extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             child: Text(
-              "إذاعة القرآن الكريم",
+              "holy_quran_radio".tr(),
               style: Theme.of(context)
                   .textTheme
                   .titleMedium

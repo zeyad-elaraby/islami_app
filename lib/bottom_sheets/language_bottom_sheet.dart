@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islami_app/my_theme_data.dart';
 
@@ -13,35 +14,57 @@ class LanguageBottomSheet extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Arabic",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: primaryColor),
-                ),
-                Icon(
-                  Icons.done,
-                  size: 30,
-                  color: primaryColor,
-                )
-              ],
+            InkWell(
+              onTap: () {
+                context.setLocale(Locale("ar"));
+                Navigator.pop(context);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "arabic".tr(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: primaryColor),
+                  ),
+                  context.locale == Locale("ar")
+                      ? Icon(
+                          Icons.done,
+                          size: 30,
+                          color: primaryColor,
+                        )
+                      : SizedBox(),
+                ],
+              ),
             ),
             SizedBox(
               height: 24,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "English",
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                // Icon(Icons.done),
-              ],
+            InkWell(
+              onTap: () {
+                context.setLocale(Locale("en"));
+                Navigator.pop(context);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "english".tr(),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  context.locale != Locale("ar")
+                      ? Icon(
+                          Icons.done,
+                          size: 30,
+                          color: primaryColor,
+                        )
+                      : SizedBox(),
+
+                  // Icon(Icons.done),
+                ],
+              ),
             ),
           ],
         ),
