@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:islami_app/my_theme_data.dart';
 import 'package:islami_app/provider/my_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home/hadeth_details.dart';
 import 'home/home.dart';
 import 'home/sura_details.dart';
@@ -22,9 +23,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  late MyProvider provider;
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<MyProvider>(context);
+    provider = Provider.of<MyProvider>(context);
+    getTheme();
+
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
@@ -40,5 +44,19 @@ class MyApp extends StatelessWidget {
         HadethDetails.routeName: (context) => HadethDetails(),
       },
     );
+  }
+
+  Future<void> getTheme() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    bool? isDark = prefs.getBool('isdark');
+    if (isDark != null) {
+      if (isDark == true) {
+        provider.mode = ThemeMode.dark;
+      } else {
+        provider.mode = ThemeMode.light;
+      }
+      provider.notifyListeners();
+    }
   }
 }

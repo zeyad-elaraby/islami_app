@@ -13,6 +13,7 @@ class HadethTab extends StatelessWidget {
   String hadeth_number = "hadeth_number".tr();
   @override
   Widget build(BuildContext context) {
+    String hadeth_number = "hadeth_number".tr();
     return ChangeNotifierProvider(
         create: (context) => HadethDetailsProvider()..loadHadeth(),
         builder: (context, child) {
@@ -41,7 +42,7 @@ class HadethTab extends StatelessWidget {
                                 context, HadethDetails.routeName,
                                 arguments: p.allAhadeth[index]);
                           },
-                          child: Text("$hadeth_number ${index + 1}",
+                          child: Text("${hadeth_number}${index + 1}",
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
