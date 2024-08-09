@@ -8,10 +8,10 @@
 		<string>Islami App</string>
 		<key>CFBundleExecutable</key>
 		<key>CFBundleLocalizations</key>
-        <array>
-        	<string>en</string>
-        	<string>nb</string>
-        </array>
+		<array>
+			<string>en</string>
+			<string>nb</string>
+		</array>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
